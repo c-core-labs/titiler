@@ -99,3 +99,17 @@ def ping():
 
 
 app.include_router(api_router, prefix=config.API_VERSION_STR)
+
+
+if __name__ == "__main__":
+    # Entry point for development
+    # Production containers call `uvicorn` from bash shell (see Dockerfile)
+    import uvicorn
+
+    uvicorn.run(
+        "titiler.main:app",
+        host="0.0.0.0",
+        port=8080,
+        log_level="info",
+        reload=True,
+    )

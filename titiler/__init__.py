@@ -1,5 +1,3 @@
 """titiler."""
 
-import pkg_resources
-
-version = pkg_resources.get_distribution(__package__).version
+version = "0.1.0"
