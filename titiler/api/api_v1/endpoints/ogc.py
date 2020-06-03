@@ -40,7 +40,7 @@ def wtms(
     host = request.headers["host"]
     if config.API_VERSION_STR:
         host += config.API_VERSION_STR
-    endpoint = f"{scheme}://{host}/cog"
+    endpoint = f"//{host}/cog"
 
     kwargs = dict(request.query_params)
     kwargs.pop("tile_format", None)

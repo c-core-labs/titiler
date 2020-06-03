@@ -12,6 +12,7 @@ rio-color = "^1.0.0"
 rio-tiler-crs = "~=2.0"
 python-binary-memcached = "^0.29.0"
 numpy = "^1.18.4"
+boto3 = "^1.13.21"
 
 [tool.poetry.dev-dependencies]
 

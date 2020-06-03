@@ -203,9 +203,9 @@ async def tilejson(
 
     qs = urlencode(list(kwargs.items()))
     if tile_format:
-        tile_url = f"{scheme}://{host}/cog/tiles/{TileMatrixSetId.name}/{{z}}/{{x}}/{{y}}@{tile_scale}x.{tile_format}?{qs}"
+        tile_url = f"//{host}/cog/tiles/{TileMatrixSetId.name}/{{z}}/{{x}}/{{y}}@{tile_scale}x.{tile_format}?{qs}"
     else:
-        tile_url = f"{scheme}://{host}/cog/tiles/{TileMatrixSetId.name}/{{z}}/{{x}}/{{y}}@{tile_scale}x?{qs}"
+        tile_url = f"//{host}/cog/tiles/{TileMatrixSetId.name}/{{z}}/{{x}}/{{y}}@{tile_scale}x?{qs}"
 
     tms = morecantile.tms.get(TileMatrixSetId.name)
     with COGReader(url, tms=tms) as cog:
@@ -246,7 +246,7 @@ async def tmslis(request: Request):
                 "title": morecantile.tms.get(tms).title,
                 "links": [
                     {
-                        "href": f"{scheme}://{host}/tileMatrixSets/{tms}",
+                        "href": f"//{host}/tileMatrixSets/{tms}",
                         "rel": "item",
                         "type": "application/json",
                     }

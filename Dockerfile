@@ -11,6 +11,9 @@ COPY requirements.txt /requirements.txt
 RUN pip install --prefix=/install -r /requirements.txt
 
 FROM python:3.7.7-slim as base
+
+ENV CURL_CA_BUNDLE /etc/ssl/certs/ca-certificates.crt
+
 COPY --from=builder /install /usr/local
 COPY titiler /titiler
 

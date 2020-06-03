@@ -13,6 +13,8 @@ from titiler import version
 from titiler.core import config
 from titiler.db.memcache import CacheLayer
 from titiler.api.api_v1.api import api_router
+# from titiler.cognito import get_tokens, jwt
+# from titiler.models.cognito import Login, User
 
 templates = Jinja2Templates(directory="titiler/templates")
 
@@ -65,12 +67,15 @@ async def cache_middleware(request: Request, call_next):
 @app.get("/index.html", response_class=HTMLResponse, tags=["Webpage"])
 def index(request: Request):
     """Demo Page."""
+    print(request.url)
     scheme = request.url.scheme
     host = request.headers["host"]
     if config.API_VERSION_STR:
         host += config.API_VERSION_STR
-    endpoint = f"{scheme}://{host}"
-
+    endpoint = f"//{host}"
+    print(scheme)
+    print(endpoint)
+    print(request)
     return templates.TemplateResponse(
         "index.html", {"request": request, "endpoint": endpoint}, media_type="text/html"
     )
@@ -83,7 +88,7 @@ def simple(request: Request):
     host = request.headers["host"]
     if config.API_VERSION_STR:
         host += config.API_VERSION_STR
-    endpoint = f"{scheme}://{host}"
+    endpoint = f"//{host}"
 
     return templates.TemplateResponse(
         "simple.html",

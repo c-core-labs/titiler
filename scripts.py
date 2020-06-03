@@ -89,8 +89,8 @@ def docker_deploy() -> None:
             f"gcr.io/{project}/{project_id}:latest",
             "--platform=managed",
             "--allow-unauthenticated",
-            "--concurrency=80",
-            "--memory=512Mi",
+            "--concurrency=10",
+            "--memory=1Gi",
             "--timeout=1m",
             f"--project={project}",
         ]
