@@ -46,3 +46,14 @@ app.add_middleware(TotalTimeMiddleware)
 def ping():
     """Health check."""
     return {"ping": "pong!"}
+
+
+if __name__ == '__main__':
+    # Entry point for development
+    # Production containers call `uvicorn` from bash shell (see Dockerfile)
+    import uvicorn
+
+    uvicorn.run(
+        "titiler.main:app", host="0.0.0.0", port=8080, log_level="info", reload=True,
+    )
+
